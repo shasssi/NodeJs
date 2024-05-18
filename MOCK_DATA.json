@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "first_name": "Garey",
+    "last_name": "Orto",
+    "email": "gorto0@domainmarket.com",
+    "gender": "Male"
+  },
+  {
+    "id": 2,
+    "first_name": "Morris",
+    "last_name": "Delagua",
+    "email": "mdelagua1@macromedia.com",
+    "gender": "Genderfluid"
+  },
+  {
+    "id": 3,
+    "first_name": "Hilarius",
+    "last_name": "Buddles",
+    "email": "hbuddles2@java.com",
+    "gender": "Male"
+  },
+  {
+    "id": 4,
+    "first_name": "Rosemarie",
+    "last_name": "Drakers",
+    "email": "rdrakers3@comsenz.com",
+    "gender": "Female"
+  },
+  {
+    "id": 5,
+    "first_name": "Rees",
+    "last_name": "Friett",
+    "email": "rfriett4@1und1.de",
+    "gender": "Male"
+  },
+  {
+    "id": 6,
+    "first_name": "Dasie",
+    "last_name": "Dutnall",
+    "email": "ddutnall5@hud.gov",
+    "gender": "Female"
+  },
+  {
+    "id": 7,
+    "first_name": "Felita",
+    "last_name": "Feedome",
+    "email": "ffeedome6@alibaba.com",
+    "gender": "Female"
+  },
+  {
+    "id": 8,
+    "first_name": "Edan",
+    "last_name": "Hamley",
+    "email": "ehamley7@trellian.com",
+    "gender": "Male"
+  },
+  {
+    "id": 9,
+    "first_name": "Hewett",
+    "last_name": "Mateja",
+    "email": "hmateja8@goo.gl",
+    "gender": "Male"
+  },
+  {
+    "id": 10,
+    "first_name": "Agatha",
+    "last_name": "Calterone",
+    "email": "acalterone9@si.edu",
+    "gender": "Female"
+  }
+]
