@@ -12,4 +12,7 @@
 ##### MongoDB - Queries document
 
     https://mongoosejs.com/docs/models.html
-    
+
+##### Use of Express Router
+
+    The express.Router() function is used to create a new router object. This function is used when you want to create a new router object in your program to handle requests. Multiple requests can be easily differentiated with the help of the Router() function in Express.js.This is the advantage of the use of the Router.
