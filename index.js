@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/user");
 const loginRouter = require("./routes/login");
+const verifyToken = require("./middlewares/auth");
 
 const app = express();
 const PORT = 8000;
@@ -21,7 +22,7 @@ mongoose
   .catch((err) => console.log("MonogDB - connection error", err));
 
 // Routes
-app.use("/api/users", userRouter);
+app.use("/api/users", verifyToken, userRouter);
 app.use("/api", loginRouter);
 
 app.listen(PORT, () =>

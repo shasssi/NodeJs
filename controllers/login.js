@@ -1,5 +1,6 @@
 const { createHmac } = require("crypto");
 const User = require("../models/user");
+const { createToken } = require("./auth");
 
 const handleSignIn = async (req, res) => {
   try {
@@ -15,10 +16,15 @@ const handleSignIn = async (req, res) => {
     if (hashedPassword !== user?.password) {
       return res.status(400).json({ err: "Incorrect username or password" });
     }
-    return res.json({
+    const userPayload = {
       id: user?._id,
       name: user?.name,
       email: user?.email,
+    };
+    const token = createToken(userPayload);
+    return res.json({
+      ...userPayload,
+      token,
     });
   } catch (error) {
     return res.status(400).json({
