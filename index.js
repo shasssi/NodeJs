@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/user");
+const loginRouter = require("./routes/login");
 
 const app = express();
 const PORT = 8000;
@@ -21,6 +22,7 @@ mongoose
 
 // Routes
 app.use("/api/users", userRouter);
+app.use("/api", loginRouter);
 
 app.listen(PORT, () =>
   console.log(`Server started and running at port : ${PORT}`)
