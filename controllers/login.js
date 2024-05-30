@@ -43,10 +43,15 @@ const handleSignUp = async (req, res) => {
       email,
       password,
     });
-    return res.json({
+    const userPayload = {
       id: user?._id,
-      name: user?.name,
-      email: user?.email,
+      name,
+      email,
+    };
+    const token = createToken(userPayload);
+    return res.json({
+      ...userPayload,
+      token,
     });
   } catch (error) {
     return res.status(400).json({
