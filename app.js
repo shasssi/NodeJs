@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/user");
 const loginRouter = require("./routes/login");
+const topicRouter = require("./routes/topic");
 const verifyToken = require("./middlewares/auth");
 
 const app = express();
@@ -16,6 +17,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 // this middleware use to bind the json-data into req body object
 app.use(express.json());
+// serve uploads folder public
+app.use(express.static("uploads"));
 
 // Connection
 mongoose
@@ -26,6 +29,7 @@ mongoose
 // Routes
 app.use("/api/users", verifyToken, userRouter);
 app.use("/api", loginRouter);
+app.use("/api/topics", verifyToken, topicRouter);
 
 app.listen(PORT, () =>
   console.log(`Server started and running at port : ${PORT}`)

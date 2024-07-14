@@ -5,7 +5,7 @@ const { sendMail, userVerificationOption, mailOption } = require("./email");
 
 const handleSignIn = async (req, res) => {
   try {
-    const email = req?.body?.email;
+    const email = req?.body?.email?.toLowerCase();
     const password = req?.body?.password;
     const user = await User.findOne({ email: email });
     if (!user) {
@@ -26,6 +26,7 @@ const handleSignIn = async (req, res) => {
       id: user?._id,
       name: user?.name,
       email: user?.email,
+      profileImg: user?.profileImageURL,
     };
     const token = createToken(userPayload);
     return res.json({
@@ -42,23 +43,15 @@ const handleSignIn = async (req, res) => {
 const handleSignUp = async (req, res) => {
   try {
     const name = req?.body?.name;
-    const email = req?.body?.email;
+    const email = req?.body?.email?.toLowerCase();
     const password = req?.body?.password;
+    const profileImg = req?.file?.filename;
     const user = await User.create({
       name,
       email,
       password,
+      ...(profileImg ? { profileImageURL: profileImg } : {}),
     });
-    // const userPayload = {
-    //   id: user?._id,
-    //   name,
-    //   email,
-    // };
-    // const token = createToken(userPayload);
-    // return res.json({
-    //   ...userPayload,
-    //   token,
-    // });
     sendMail({
       ...userVerificationOption,
       text: process.env.USER_VERIFICATION_URL + user?._id,
@@ -76,7 +69,6 @@ const handleSignUp = async (req, res) => {
 const handleVerifyUser = async (req, res) => {
   try {
     const userId = req?.params?.id;
-    console.log("suerId", userId);
     const user = await User.findById(userId);
     if (!user) return res.status(400).json({ err: "User not found" });
     await User.findByIdAndUpdate(userId, {
