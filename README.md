@@ -20,3 +20,5 @@
 ##### Password Hash
 
     can be done using - crypto (default node package), bcrypt (external package)
+
+`Read more - check Node.md`
