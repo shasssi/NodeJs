@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 // this middleware use to bind the json-data into req body object
 app.use(express.json());
 // serve uploads folder public
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static("public"));
 
 // Connection
 mongoose
