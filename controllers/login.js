@@ -2,6 +2,7 @@ const { createHmac } = require("crypto");
 const User = require("../models/user");
 const { createToken } = require("./auth");
 const { sendMail, userVerificationOption, mailOption } = require("./email");
+const uploadImage = require("./upload");
 
 const handleSignIn = async (req, res) => {
   try {
@@ -45,13 +46,17 @@ const handleSignUp = async (req, res) => {
     const name = req?.body?.name;
     const email = req?.body?.email?.toLowerCase();
     const password = req?.body?.password;
-    const profileImg = req?.file?.filename;
+    // const profileImg = req?.file?.filename;
+    // upload to vercel storage
+    const profileImg = await uploadImage(req.file);
+    // db insert
     const user = await User.create({
       name,
       email,
       password,
       ...(profileImg ? { profileImageURL: profileImg } : {}),
     });
+    // send mail
     sendMail({
       ...userVerificationOption,
       text: process.env.USER_VERIFICATION_URL + user?._id,
