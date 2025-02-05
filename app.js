@@ -1,14 +1,11 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
 const userRouter = require("./routes/user");
 const loginRouter = require("./routes/login");
 const topicRouter = require("./routes/topic");
-const verifyToken = require("./middlewares/auth");
+const { verifyToken } = require("./middlewares/auth");
 
 const app = express();
-const PORT = process.env.PORT;
 
 app.use(cors());
 
@@ -20,17 +17,9 @@ app.use(express.json());
 // serve uploads folder public
 app.use("/uploads", express.static("public"));
 
-// Connection
-mongoose
-  .connect(process.env.MONGODB_URL)
-  .then(() => console.log("MonogDB - connected successfully"))
-  .catch((err) => console.log("MonogDB - connection error", err));
-
 // Routes
 app.use("/api/users", verifyToken, userRouter);
 app.use("/api", loginRouter);
 app.use("/api/topics", verifyToken, topicRouter);
 
-app.listen(PORT, () =>
-  console.log(`Server started and running at port : ${PORT}`)
-);
+module.exports = app;
