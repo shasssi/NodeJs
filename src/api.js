@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const userRouter = require("../routes/user");
 const loginRouter = require("../routes/login");
 const topicRouter = require("../routes/topic");
-const verifyToken = require("../middlewares/auth");
+const { verifyToken } = require("../middlewares/auth");
 
 const app = express();
 const PORT = process.env.PORT;
